@@ -50,17 +50,6 @@
         - { alias: "git", command: "hub" }
         - { alias: "cask", command: "brew cask" }
 
-  - name: "Configure the Dock"
-    role: dock
-    apps:
-      - "/Applications/Spotify.app"
-      - "/Applications/Google Chrome.app"
-      - "/Applications/iTerm.app"
-    folders:
-      - path: "/Applications"
-        display: stack
-        sort: name
-
   - name: "Set git Configuration"
     role: git_config
     git_user_name: "Aaran McGuire"
@@ -111,6 +100,16 @@
       # Use column view.
       - { key: "com.apple.finder FXPreferredViewStyle", value: "clmv", type: string }
       
+  - name: "Configure the Dock"
+    role: dock
+    apps:
+      - "/Applications/Spotify.app"
+      - "/Applications/Google Chrome.app"
+      - "/Applications/iTerm.app"
+    folders:
+      - path: "/Applications"
+        display: stack
+        sort: name
 
 
 
