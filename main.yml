@@ -100,7 +100,7 @@
       # When performing a search, search the current folder by default.
       - { key: "com.apple.finder FXDefaultSearchScope", value: "SCcf", type: string }
       # Use column view.
-      - { key: "com.apple.finder FXPreferredViewStyle", value: "clmv", type: string }
+      - { key: "com.apple.finder FXPreferredViewStyle", value: "Nlsv", type: string }
       
   - name: "Configure the Dock"
     role: dock
