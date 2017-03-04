@@ -56,7 +56,7 @@
     git_user_email: "aaran.mcguire@cl.vc"
     git_user_signingkey: "46FB0FC1!"
     git_commit_gpgsign: true
-    
+
   - name: "Configure the Dock"
     role: dock
     apps:
@@ -76,7 +76,7 @@
       - { key: "com.apple.Dock autohide", value: 1, type: float }
       # Dock Sizes.
       - { key: "com.apple.Dock largesize", value: 38, type: float }
-      - { key: "com.apple.Dock titlesize", value: 16, type: float }
+      - { key: "com.apple.Dock tilesize", value: 16, type: float }
       # Enable Dock Magnification.
       - { key: "com.apple.Dock magnification", value: 1, type: float }
       # Disable Image import when connecting devices.
