@@ -75,6 +75,8 @@
       - { key: "com.apple.Dock autohide-delay", value: 0, type: float }
       - { key: "com.apple.Dock autohide", value: 1, type: float }
       - { key: "com.apple.Dock largesize", value: 38, type: float }
+      # Enable Dock Magnification.
+      - { key: "com.apple.Dock magnification", value: 1, type: float }
       # Disable Image import when connecting devices.
       - { key: "com.apple.ImageCapture disableHotPlug", value: true, type: bool }
       # Disable press and hold for foreign characters. 
@@ -106,7 +108,7 @@
       - { key: "com.apple.finder NewWindowTarget", value: "PfHm", type: string }  
       # When performing a search, search the current folder by default.
       - { key: "com.apple.finder FXDefaultSearchScope", value: "SCcf", type: string }
-      # Use column view,
+      # Use column view.
       - { key: "com.apple.finder FXPreferredViewStyle", value: "clmv", type: string }
       
 
