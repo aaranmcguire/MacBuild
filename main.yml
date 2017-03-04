@@ -73,7 +73,7 @@
     settings:
       # Auto Hide Dock with no delay.
       - { key: "com.apple.Dock autohide-delay", value: 0, type: float }
-      - { key: "com.apple.Dock autohide", value: 1, type: float }
+      - { key: "com.apple.Dock autohide", value: true, type: bool }
       # Dock Sizes.
       - { key: "com.apple.Dock largesize", value: 38, type: float }
       - { key: "com.apple.Dock tilesize", value: 16, type: float }
@@ -118,6 +118,6 @@
       - { key: "NSGlobalDomain com.apple.trackpad.threeFingerVertSwipeGesture", value: 0, type: int, extra: "-currentHost" }
       - { key: "NSGlobalDomain com.apple.trackpad.twoFingerDoubleTapGesture", value: 0, type: int, extra: "-currentHost" }
       - { key: "NSGlobalDomain com.apple.trackpad.twoFingerFromRightEdgeSwipeGesture", value: 0, type: int, extra: "-currentHost" }
-
+      - { key: "NSGlobalDomain com.apple.trackpad.fourFingerVertSwipeGesture", value: 0, type: int, extra: "-currentHost" }
 
 
