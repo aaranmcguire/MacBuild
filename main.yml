@@ -101,9 +101,6 @@
       - { key: "com.apple.desktopservices DSDontWriteNetworkStores", value: true, type: bool }
       # Enable text selection in Quicklook.
       - { key: "com.apple.finder QLEnableTextSelection", value: true, type: bool }
-      # Disable Chrome scroll based navigation.
-      - { key: "com.google.Chrome AppleEnableSwipeNavigateWithScrolls", value: false, type: bool }
-      - { key: "com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls", value: false, type: bool }
       # Disable TimeMachine for external disks.
       - { key: "com.apple.TimeMachine DoNotOfferNewDisksForBackup", value: true, type: bool }
       # Set default finder window to user home folder.
@@ -112,7 +109,15 @@
       - { key: "com.apple.finder FXDefaultSearchScope", value: "SCcf", type: string }
       # Use column view.
       - { key: "com.apple.finder FXPreferredViewStyle", value: "Nlsv", type: string }
-
+      # Show battery percentage in menu bar
+      - { key: "com.apple.menuextra.battery ShowPercent", value: "YES", type: string }
+      # Mouse Settings.
+      - { key: "NSGlobalDomain AppleEnableSwipeNavigateWithScrolls", value: 0, type: int }
+      - { key: "NSGlobalDomain com.apple.trackpad.threeFingerDragGesture", value: 0, type: int, extra: "-currentHost" }
+      - { key: "NSGlobalDomain com.apple.trackpad.threeFingerTapGesture", value: 0, type: int, extra: "-currentHost" }
+      - { key: "NSGlobalDomain com.apple.trackpad.threeFingerVertSwipeGesture", value: 0, type: int, extra: "-currentHost" }
+      - { key: "NSGlobalDomain com.apple.trackpad.twoFingerDoubleTapGesture", value: 0, type: int, extra: "-currentHost" }
+      - { key: "NSGlobalDomain com.apple.trackpad.twoFingerFromRightEdgeSwipeGesture", value: 0, type: int, extra: "-currentHost" }
 
 
 

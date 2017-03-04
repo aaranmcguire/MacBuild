@@ -1,5 +1,5 @@
 ---
 - name: "Set Defaults"
-  shell: "defaults write {{ item.key }} -{{ item.type }} {{ item.value }}"
+  shell: "defaults {{ item.extra | default("") }} write {{ item.key }} -{{ item.type }} {{ item.value }}"
   with_items: "{{ settings }}"
   when: settings is defined
