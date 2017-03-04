@@ -119,6 +119,7 @@
       - { key: "NSGlobalDomain com.apple.trackpad.twoFingerDoubleTapGesture", value: 0, type: int, extra: "-currentHost" }
       - { key: "NSGlobalDomain com.apple.trackpad.twoFingerFromRightEdgeSwipeGesture", value: 0, type: int, extra: "-currentHost" }
       - { key: "NSGlobalDomain com.apple.trackpad.fourFingerVertSwipeGesture", value: 0, type: int, extra: "-currentHost" }
-
-- name: "Restart Dock"
-  shell: "killall Dock"
+      - { key: "com.apple.dock showLaunchpadGestureEnabled", value: false, type: bool }
+    restartAfter:
+      - Dock
+      - Finder

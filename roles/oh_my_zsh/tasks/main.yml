@@ -3,7 +3,7 @@
 
 - name: "Check if Oh My Zsh is installed"
   command: test -d ~/.oh-my-zsh
-  failed_when: "is_cask_installed.rc == 2"
+  failed_when: "is_ohmyzsh_installed.rc == 2"
   ignore_errors: True
   register: is_ohmyzsh_installed
 
