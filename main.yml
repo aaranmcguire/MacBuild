@@ -56,6 +56,17 @@
     git_user_email: "aaran.mcguire@cl.vc"
     git_user_signingkey: "46FB0FC1!"
     git_commit_gpgsign: true
+    
+  - name: "Configure the Dock"
+    role: dock
+    apps:
+      - "/Applications/Spotify.app"
+      - "/Applications/Google Chrome.app"
+      - "/Applications/iTerm.app"
+    folders:
+      - path: "/Applications"
+        display: stack
+        sort: name
 
   - name: "Set Defaults"
     role: mac_defaults
@@ -101,17 +112,6 @@
       - { key: "com.apple.finder FXDefaultSearchScope", value: "SCcf", type: string }
       # Use column view.
       - { key: "com.apple.finder FXPreferredViewStyle", value: "Nlsv", type: string }
-      
-  - name: "Configure the Dock"
-    role: dock
-    apps:
-      - "/Applications/Spotify.app"
-      - "/Applications/Google Chrome.app"
-      - "/Applications/iTerm.app"
-    folders:
-      - path: "/Applications"
-        display: stack
-        sort: name
 
 
 
