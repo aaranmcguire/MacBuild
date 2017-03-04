@@ -1,0 +1,10 @@
+[user]
+	email = {{ git_user_email }}
+	name = {{ git_user_name }}
+	signingkey = {{ git_user_signingkey }}
+[credential]
+	helper = osxkeychain
+[push]
+	default = {{ git_push_default }}
+[commit]
+	gpgsign = {{ git_commit_gpgsign }}

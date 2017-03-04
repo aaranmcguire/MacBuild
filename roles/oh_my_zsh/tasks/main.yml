@@ -1,0 +1,45 @@
+---
+# binds zsh config
+
+- name: "Check if Oh My Zsh is installed"
+  command: test -d ~/.oh-my-zsh
+  ignore_errors: True
+  register: is_ohmyzsh_installed
+
+- name: "Install Oh My Zsh"
+  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  ignore_errors: True
+  when: "is_ohmyzsh_installed.rc != 0"
+
+- name: "Set Oh My Zsh Theme"
+  lineinfile: 
+    dest: '{{ ansible_env.HOME }}/.zshrc'
+    regexp: '^ZSH_THEME'
+    line: 'ZSH_THEME=\"{{ item }}\"'
+  with_items: "{{ config.theme }}"
+  when: (is_ohmyzsh_installed.rc == 0) and (config.theme is defined)
+
+- name: "Set Oh My Zsh Plugins"
+  lineinfile:
+    dest: '{{ ansible_env.HOME }}/.zshrc'
+    regexp: '^plugins='
+    line: 'plugins=({{ config.plugins | join(", ") }})'
+  with_items: "{{ config.plugins }}"
+  when: (is_ohmyzsh_installed.rc == 0) and (config.plugins is defined)
+
+- name: "Setup PATHs"
+  lineinfile:
+    dest: '{{ ansible_env.HOME }}/.zshrc'
+    insertafter: '# export PATH=$HOME/bin:/usr/local/bin:$PATH'
+    line: 'export PATH="{{ item }}:$PATH"'
+  with_items: "{{ config.PATHs }}"
+  when: (is_ohmyzsh_installed.rc == 0) and (config.PATHs is defined)
+
+- name: "Setup Aliases"
+  lineinfile:
+    dest: '{{ ansible_env.HOME }}/.zshrc'
+    insertafter: '# Example aliases'
+    line: 'alias {{ item.alias }}="{{ item.command }}"'
+  with_items: "{{ config.aliases }}"
+  when: (is_ohmyzsh_installed.rc == 0) and (config.aliases is defined)
+

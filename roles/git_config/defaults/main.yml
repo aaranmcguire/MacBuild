@@ -1,0 +1,8 @@
+---
+# defaults for git: **must be overridden** !!!
+
+git_user_name: "{{ ansible_user_id }}"
+git_user_email: admin@example.com
+git_user_signingkey: ""
+git_push_default: simple
+git_commit_gpgsign: false

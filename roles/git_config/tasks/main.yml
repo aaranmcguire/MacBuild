@@ -1,0 +1,29 @@
+---
+# configures git
+
+
+- name: "Check for existing ~/.gitconfig"
+  stat:
+    path: ~/.gitconfig
+  register: gitcfg_exists
+
+- name: "Copy template config to ~/.gitconfig"
+  template:
+    src: gitconfig.j2
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+    backup: yes
+  when: gitcfg_exists.stat.exists == false
+
+- name: "Update ~/.gitconfig"
+  lineinfile: 
+    dest: '{{ ansible_env.HOME }}/.gitconfig'
+    regexp: '{{ item.regex }}'
+    line: '	{{ item.regex}} = {{ item.value }}'
+  with_items:
+    - { regex: 'email'         , value: '{{ git_user_email }}' }
+    - { regex: 'name'          , value: '{{ git_user_name }}' }
+    - { regex: 'signingkey'    , value: '{{ git_user_signingkey }}' }
+    - { regex: 'gpgsign'       , value: '{{ git_commit_gpgsign }}' }
+    - { regex: 'default'       , value: '{{ git_push_default }}' }
+    - { regex: 'helper'  , value: 'osxkeychain' }
+  when: gitcfg_exists.stat.exists == true

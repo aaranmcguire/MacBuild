@@ -1,0 +1,27 @@
+---
+# installs an arbitrary homebrew cask package
+
+- name: "Check if Cask is installed"
+  shell: brew tap | grep caskroom/cask
+  register: is_cask_installed
+  failed_when: "is_cask_installed.rc == 2"
+  ignore_errors: yes
+
+- name: "Install Cask"
+  shell: "brew tap caskroom/cask"
+  when: is_cask_installed.results|map(attribute='stdout') != "caskroom/cask"
+
+- name: "Check for installed Casks (Applications)"
+  shell: brew cask list | grep {{ item }}
+  register: installed_applications
+  with_items: "{{ apps }}"
+  when: apps is defined
+  failed_when: "installed_applications.rc == 2"
+  ignore_errors: yes
+
+- name: "Install Casks (Applications)"
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ apps }}"
+  when: (apps is defined) and (item not in installed_applications.results|map(attribute='stdout'))

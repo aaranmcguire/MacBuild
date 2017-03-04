@@ -1,0 +1,25 @@
+---
+# installs an arbitrary homebrew package
+
+- name: "Tap a repo"
+  homebrew_tap:
+    tap: "{{ tap }}"
+    state: present
+  when: tap is defined
+
+- name: "Install Homebrew packages"
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+    update_homebrew: no
+  when: (packages is defined) and (brew_opts is not defined)
+  with_items: "{{ packages }}"
+
+- name: "Install Homebrew packages with options"
+  homebrew:
+    name: "{{ item }}"
+    install_options: "{{ brew_opts }}"
+    state: latest
+    update_homebrew: no
+  when: (packages is defined) and (brew_opts is defined)
+  with_items: "{{ packages }}"

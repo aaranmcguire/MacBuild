@@ -1,0 +1,115 @@
+---
+- hosts: all
+  roles:
+
+  # Install Applications
+  
+  - name: "Install Homebrew"
+    role: Homebrew
+
+  - name: "Install CLI Applications via Homebrew"
+    role: brew_package
+    packages:
+      - openssl
+      - docker
+      - wget
+      - curl
+      - git
+      - hub
+      - mas
+      - gpg-agent
+      - httpie
+      - speedtest_cli
+      - zsh
+
+  # - name: "Install Applications via Homebrew Cask"
+  #   role: cask_package
+  #   apps:
+  #     - google-chrome
+  #     - google-drive
+  #     - spotify
+  #     - sublime-text
+  #     - slack
+  #     - vlc
+  #     - flux
+  #     - iterm2
+  #     - keybase
+  #     - torbrowser
+
+  # User Configuration
+
+  - name: "Install & Setup Oh-My-Zsh"
+    role: oh_my_zsh
+    config:
+      plugins:
+        - git
+        - dockers
+        - httpie
+      aliases:
+        - { alias: "art", command: "php artisan" }
+        - { alias: "git", command: "hub" }
+        - { alias: "cask", command: "brew cask" }
+
+  - name: "Configure the Dock"
+    role: dock
+    apps:
+      - "/Applications/Spotify.app"
+      - "/Applications/Google Chrome.app"
+      - "/Applications/iTerm.app"
+    folders:
+      - path: "/Applications"
+        display: stack
+        sort: name
+
+  - name: "Set git Configuration"
+    role: git_config
+    git_user_name: "Aaran McGuire"
+    git_user_email: "aaran.mcguire@cl.vc"
+    git_user_signingkey: "46FB0FC1!"
+    git_commit_gpgsign: true
+
+  - name: "Set Defaults"
+    role: mac_defaults
+    settings:
+      # Auto Hide Dock with no delay.
+      - { key: "com.apple.Dock autohide-delay", value: 0, type: float }
+      - { key: "com.apple.Dock autohide", value: 1, type: float }
+      - { key: "com.apple.Dock largesize", value: 38, type: float }
+      # Disable Image import when connecting devices.
+      - { key: "com.apple.ImageCapture disableHotPlug", value: true, type: bool }
+      # Disable press and hold for foreign characters. 
+      - { key: "NSGlobalDomain ApplePressAndHoldEnabled", value: false, type: bool }
+      # Disable auto spelling correction.
+      - { key: "NSGlobalDomain NSAutomaticSpellingCorrectionEnabled", value: false, type: bool }
+      # Ask for password after screensaver.
+      - { key: "com.apple.screensaver askForPassword", value: 1, type: int }
+      - { key: "com.apple.screensaver askForPasswordDelay", value: 0, type: int }
+      # Show HDD on Desktop.
+      - { key: "com.apple.finder ShowExternalHardDrivesOnDesktop", value: true, type: bool }
+      - { key: "com.apple.finder ShowHardDrivesOnDesktop", value: true, type: bool }
+      # Show extentions in finder.
+      - { key: "NSGlobalDomain AppleShowAllExtensions", value: true, type: bool }
+      # Show stats bar in finder.
+      - { key: "com.apple.finder ShowStatusBar", value: true, type: bool }
+      # Disable warnings when changing file extentions.
+      - { key: "com.apple.finder FXEnableExtensionChangeWarning", value: false, type: bool }
+      # Disable .DS_Store files on network drives.
+      - { key: "com.apple.desktopservices DSDontWriteNetworkStores", value: true, type: bool }
+      # Enable text selection in Quicklook.
+      - { key: "com.apple.finder QLEnableTextSelection", value: true, type: bool }
+      # Disable Chrome scroll based navigation.
+      - { key: "com.google.Chrome AppleEnableSwipeNavigateWithScrolls", value: false, type: bool }
+      - { key: "com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls", value: false, type: bool }
+      # Disable TimeMachine for external disks.
+      - { key: "com.apple.TimeMachine DoNotOfferNewDisksForBackup", value: true, type: bool }
+      # Set default finder window to user home folder.
+      - { key: "com.apple.finder NewWindowTarget", value: "PfHm", type: string }  
+      # When performing a search, search the current folder by default.
+      - { key: "com.apple.finder FXDefaultSearchScope", value: "SCcf", type: string }
+      # Use column view,
+      - { key: "com.apple.finder FXPreferredViewStyle", value: "clmv", type: string }
+      
+
+
+
+
