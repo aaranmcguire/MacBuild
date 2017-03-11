@@ -1,0 +1,7 @@
+---
+
+# ToDo: Create Projects Folder
+# ToDo: Install Laravel Valet & Set Protjects Folder as root
+
+# - name: "Install Laravel Valet"
+#   shell: valet install

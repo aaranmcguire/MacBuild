@@ -1,0 +1,6 @@
+---
+
+- name: "Install Composer Packages"
+  shell: "composer {{ item.global | default('') | regex_replace('^true$', 'global') }} require {{ item.package | default(item) }}"
+  with: "{{ packages }}"
+  when: packages is defined

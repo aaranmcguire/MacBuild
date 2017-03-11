@@ -4,3 +4,6 @@
   shell: curl {{ item }} | gpg --import
   with: "{{ import }}"
   when: import is defined
+
+
+# ToDo: Setup GPG Agent

@@ -22,6 +22,9 @@
       - speedtest_cli
       - zsh
 
+  - name: "Install Laravel Enviroment"
+    roll: laravel_environment
+
   # - name: "Install Applications via Homebrew Cask"
   #   role: cask_package
   #   apps:

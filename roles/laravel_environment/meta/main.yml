@@ -1,0 +1,8 @@
+---
+dependencies:
+  - role: composer_package
+    packages:
+      - { package: "laravel/installer", global: true }
+      - { package: "laravel/lumen-installer", global: true }
+      - { package: "laravel/valet", global: true }
+      - { package: "laravel/spark-installer", global: true }
