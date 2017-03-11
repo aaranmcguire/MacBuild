@@ -15,6 +15,11 @@
   register: mas_signin_result
   when: mas_account_result.rc == 1 and mas_email != '' and mas_password != ''
 
+- name: Sign in to MAS when password is not provided.
+  shell: 'mas signin "{{ mas_email }}" --dialog'
+  register: mas_signin_result
+  when: mas_account_result.rc == 1 and mas_email != '' and mas_password is not defined
+
 - name: List installed MAS apps.
   command: mas list
   register: mas_list
@@ -23,7 +28,7 @@
 
 - name: Ensure configured MAS apps are installed.
   command: mas install "{{ item.id|default(item) }}"
-  with_items: "{{ mas_installed_apps + mas_installed_app_ids }}"
+  with_items: "{{ apps }}"
   when: "'{{ item.id|default(item) }}' not in mas_list.stdout"
 
 - name: Upgrade all apps (if configured).

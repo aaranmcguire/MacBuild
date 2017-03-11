@@ -35,6 +35,24 @@
   #     - iterm2
   #     - keybase
   #     - torbrowser
+  #     - the-unarchiver
+  #     - grammarly
+
+
+  - name: "Install Applications via App Store"
+    role: mas_package
+    mas_email: "aaran.mcguire@me.com"
+    apps:
+      - name: Clocks
+        id: 414554506
+      - name: VisualDiffer
+        id: 412386481
+      - name: Twitter
+        id: 409789998
+      - name: Calca
+        id: 635758264
+      - name: BetterSnapTool
+        id: 417375580
 
   # User Configuration
 
@@ -54,7 +72,7 @@
     role: git_config
     git_user_name: "Aaran McGuire"
     git_user_email: "aaran.mcguire@cl.vc"
-    git_user_signingkey: "46FB0FC1!"
+    git_user_signingkey: "8062012BABDF0202"
     git_commit_gpgsign: true
 
   - name: "Configure the Dock"
@@ -127,7 +145,6 @@
       - { key: "org.herf.Flux wakeTime", value: 420, type: int }
       - { key: "org.herf.Flux sleepLate", value: true, type: bool }
       - { key: "org.herf.Flux under18", value: true, type: bool }
-      
     restartAfter:
       - Dock
       - Finder
