@@ -75,6 +75,11 @@
     git_user_signingkey: "8062012BABDF0202"
     git_commit_gpgsign: true
 
+  - name: "Setup GPG"
+    role: gpg_setup
+    import:
+      - https://keybase.io/aaranmcguire/pgp_keys.asc
+
   - name: "Configure the Dock"
     role: dock
     apps:
