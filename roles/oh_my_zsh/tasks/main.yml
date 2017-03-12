@@ -1,19 +1,20 @@
 ---
 
-- name: "Update Oh My Zsh Repo"
+- name: "Install/Update Oh My Zsh"
   git:
     repo: "https://github.com/robbyrussell/oh-my-zsh.git"
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
 
 - name: "Copy zshrc template to ~/.zshrc"
-  file:
+  copy:
     src: "{{ ansible_env.HOME }}/.oh-my-zsh/templates/zshrc.zsh-template"
     dest: "{{ ansible_env.HOME }}/.zshrc"
 
 - name: "Set Oh My Zsh as Shell"
-  user:
-    name: "{{ ansible_user_id }}"
-    shell: "/bin/zsh"
+  expect:
+    command: chsh -s "/bin/zsh"
+    responses:
+      (?i)password: "{{ escalation_password }}"
 
 - name: "Set Oh My Zsh Theme"
   lineinfile: 

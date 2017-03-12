@@ -1,5 +1,11 @@
 ---
 - hosts: all
+
+  vars_prompt:
+  - name: "escalation_password"
+    prompt: "Enter password"
+    private: yes
+
   roles:
 
   # Install Applications
