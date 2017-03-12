@@ -4,6 +4,6 @@
   shell: composer global self-update
 
 - name: "Install Composer Packages"
-  shell: "composer {{ item.global | default('') | regex_replace('/^true$/i', 'global') }} require {{ item.package | default(item) }} {{ item.version | default('') }}"
+  shell: "composer {{ item.global | default('') | regex_replace('^True$', 'global') }} require {{ item.package | default(item) }} {{ item.version | default('') }}"
   with_items: "{{ packages }}"
   when: packages is defined
