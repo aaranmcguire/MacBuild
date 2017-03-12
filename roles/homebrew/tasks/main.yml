@@ -1,9 +1,9 @@
 ---
 
-# - name: "Assert Homebrew installation"
-#   stat:
-#     path: "{{ brew_install_path }}/bin/brew"
-#   register: brew_installed
+- name: "Assert Homebrew installation"
+  stat:
+    path: "{{ brew_install_path }}/bin/brew"
+  register: brew_installed
 
 # - name: "Install Homebrew"
 #   git: 

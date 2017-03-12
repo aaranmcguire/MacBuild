@@ -40,7 +40,7 @@
   #     - torbrowser
   #     - the-unarchiver
   #     - grammarly
-
+  #     - atom
 
   - name: "Install Applications via App Store"
     role: mas_package
@@ -56,6 +56,8 @@
         id: 635758264
       - name: BetterSnapTool
         id: 417375580
+      - name: Todoist
+        id: 585829637
 
   # User Configuration
 
@@ -70,6 +72,7 @@
         - { alias: "art", command: "php artisan" }
         - { alias: "git", command: "hub" }
         - { alias: "cask", command: "brew cask" }
+        - { alias: "subl", command: "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" }
 
   - name: "Set git Configuration"
     role: git_config
