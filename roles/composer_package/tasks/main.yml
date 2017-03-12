@@ -1,9 +1,9 @@
 ---
 
+- name: "Upgrade Composer"
+  shell: composer global self-update
+
 - name: "Install Composer Packages"
-  shell: "composer {{ item.global | default('') | regex_replace('^true$', 'global') }} require {{ item.package | default(item) }}"
+  shell: "composer {{ item.global | default('') | regex_replace('/^true$/i', 'global') }} require {{ item.package | default(item) }} {{ item.version | default('') }}"
   with_items: "{{ packages }}"
   when: packages is defined
-
-
-  # ToDo: Add Composer upgrade/update

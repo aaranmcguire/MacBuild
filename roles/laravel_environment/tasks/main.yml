@@ -1,6 +1,10 @@
 ---
 
-# ToDo: Create Projects Folder
+- name: "Create Projects folder"
+  file:
+    path: "{{ ansible_env.HOME }}/Projects"
+    state: directory
+
 # ToDo: Install Laravel Valet & Set Protjects Folder as root
 
 # - name: "Install Laravel Valet"

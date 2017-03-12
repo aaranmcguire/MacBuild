@@ -3,9 +3,6 @@
   roles:
 
   # Install Applications
-  
-  - name: "Install Homebrew"
-    role: Homebrew
 
   - name: "Install CLI Applications via Homebrew"
     role: brew_package
@@ -21,9 +18,6 @@
       - httpie
       - speedtest_cli
       - zsh
-
-  - name: "Install Laravel Enviroment"
-    role: laravel_environment
 
   # - name: "Install Applications via Homebrew Cask"
   #   role: cask_package
@@ -68,13 +62,19 @@
         - git
         - dockers
         - httpie
+      PATHs:
+        - "{{ ansible_env.HOME }}/.composer/vendor/bin" # Composer
+        - "/usr/local/sbin" # Homebrew
       aliases:
         - { alias: "art", command: "php artisan" }
         - { alias: "git", command: "hub" }
         - { alias: "cask", command: "brew cask" }
         - { alias: "subl", command: "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" }
 
-  - name: "Set git Configuration"
+  - name: "Install Laravel Enviroment"
+    role: laravel_environment
+
+  - name: "Set Git Configuration"
     role: git_config
     git_user_name: "Aaran McGuire"
     git_user_email: "aaran.mcguire@cl.vc"
