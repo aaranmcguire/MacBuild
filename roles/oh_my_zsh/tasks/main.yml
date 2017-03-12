@@ -2,14 +2,15 @@
 # binds zsh config
 
 - name: "Check if Oh My Zsh is installed"
-  command: test -d ~/.oh-my-zsh
+  shell: "test -d {{ ansible_env.HOME }}/.oh-my-zsh"
   failed_when: "is_ohmyzsh_installed.rc == 2"
   ignore_errors: True
   register: is_ohmyzsh_installed
 
-- name: "Install Oh My Zsh"
-  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  ignore_errors: True
+- name: "Install Oh My Zsh Repo"
+  git:
+    repo: "https://github.com/robbyrussell/oh-my-zsh.git"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
   when: "is_ohmyzsh_installed.rc != 0"
 
 - name: "Set Oh My Zsh Theme"
