@@ -11,10 +11,8 @@
     dest: "{{ ansible_env.HOME }}/.zshrc"
 
 - name: "Set Oh My Zsh as Shell"
-  expect:
-    command: chsh -s "/bin/zsh"
-    responses:
-      (?i)password: "{{ escalation_password }}"
+  shell: "chsh -s $(which zsh) {{ ansible_user_id }}"
+  sudo: True
 
 - name: "Set Oh My Zsh Theme"
   lineinfile: 
