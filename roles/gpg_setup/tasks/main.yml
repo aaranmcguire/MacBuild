@@ -2,7 +2,7 @@
 
 - name: "Import Public Keys"
   shell: curl {{ item }} | gpg --import
-  with: "{{ import }}"
+  with_items: "{{ import }}"
   when: import is defined
 
 
