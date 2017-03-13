@@ -5,7 +5,7 @@
     path: "/usr/local/bin/brew"
   register: brew_installed
 
-- name: "Ensure Homebrew directory exists"
+- name: "Ensure Homebrew directory exists (/usr/local/homebrew)"
   file:
     path: /usr/local/homebrew
     owner: "{{ ansible_user_id }}"
@@ -15,7 +15,7 @@
     mode: 0775
   become: yes
 
-- name: "Ensure Homebrew directory exists (2)"
+- name: "Ensure Homebrew directory exists (/usr/local/bin)"
   file:
     path: /usr/local/bin
     owner: "{{ ansible_user_id }}"
@@ -48,5 +48,5 @@
     update_homebrew: yes
   when: brew_installed.stat.exists == true
 
-- name: "export PATH env"
+- name: "Add Homebrew in PATH for rest of install"
   shell: 'export PATH="/usr/local/bin:$PATH"'
