@@ -36,6 +36,28 @@
       - grammarly
       - atom
 
+  - name: "Hide applications if SIP is disabled"
+    role: hide_applications
+    apps:
+      - "/Applications/Chess.app"
+      - "/Applications/Automator.app"
+      - "/Applications/Contacts.app"
+      - "/Applications/Dashboard.app"
+      - "/Applications/Dictionary.app"
+      - "/Applications/DVD\\ Player.app"
+      - "/Applications/Font\\ Book.app"
+      - "/Applications/iBooks.app"
+      - "/Applications/Image\\ Capture.app"
+      - "/Applications/Launchpad.app"
+      - "/Applications/Mail.app"
+      - "/Applications/Maps.app"
+      - "/Applications/Mission\\ Control.app"
+      - "/Applications/Photo\\ Booth.app"
+      - "/Applications/Reminders.app"
+      - "/Applications/Siri.app"
+      - "/Applications/Stickies.app"
+      - "/Applications/Time\\ Machine.app"
+
   # - name: "Install Applications via App Store"
   #   role: mas_package
   #   mas_email: "aaran.mcguire@me.com"
@@ -71,7 +93,7 @@
         - { alias: "art", command: "php artisan" }
         - { alias: "git", command: "hub" }
         - { alias: "cask", command: "brew cask" }
-        - { alias: "subl", command: "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl" }
+        - { alias: "subl", command: "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl" }
 
   - name: "Install Laravel Enviroment"
     role: laravel_environment
