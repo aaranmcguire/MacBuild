@@ -60,7 +60,7 @@
     config:
       plugins:
         - git
-        - dockers
+        - docker
         - httpie
       PATHs:
         - "{{ ansible_env.HOME }}/.composer/vendor/bin" # Composer
