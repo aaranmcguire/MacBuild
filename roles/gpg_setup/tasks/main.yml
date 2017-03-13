@@ -1,22 +1,23 @@
 ---
 
+- name: "Create folder for certs"
+  file:
+    path: "{{ ansible_env.HOME }}/.certs"
+    state: directory
+
+
 - name: "Download public certs"
   get_url:
     url: "{{ item.url | default() }}"
-    dest: "{{ item.url | hash(md5) }}.asc"
+    dest: "{{ ansible_env.HOME }}/.certs/{{ item.url | hash(md5) }}.asc"
     checksum: "md5:{{ item.md5_checksum }}"
   with_items: "{{ import }}"
   when: item is defined
 
 - name: "Import downloaded certs"
-  shell: "gpg2 --import {{ item.url | hash(md5) }}.asc"
+  shell: "gpg2 --import {{ ansible_env.HOME }}/.certs/{{ item.url | hash(md5) }}.asc"
   with_items: "{{ import }}"
   when: item is defined
 
-- name: "Delete imported certs"
-  file:
-    path: "*.asc"
-    state: absent
-  
 
 # ToDo: Setup GPG Agent

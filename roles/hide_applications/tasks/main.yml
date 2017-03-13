@@ -3,7 +3,7 @@
 - name: "Check if SIP is enabled"
   shell: csrutil status | enabled
   register: is_SIP_enabled
-  failed_when: "installed_applications.rc == 2"
+  failed_when: "is_SIP_enabled.rc == 2"
   ignore_errors: yes
 
 - name: "Hide applications (SIP is disabled)"
