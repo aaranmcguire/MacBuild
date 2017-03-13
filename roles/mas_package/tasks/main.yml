@@ -1,8 +1,4 @@
 ---
-- name: Ensure MAS is installed.
-  homebrew:
-    name: mas
-    state: present
 
 - name: Get MAS account status
   shell: 'mas account'
@@ -33,4 +29,3 @@
 
 - name: Upgrade all apps (if configured).
   command: mas upgrade
-  when: mas_upgrade_all_apps
