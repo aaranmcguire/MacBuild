@@ -2,6 +2,8 @@
 
 - name: "Import Public Keys"
   shell: curl {{ item }} | gpg --import
+  args:
+    executable: "/bin/bash"
   with_items: "{{ import }}"
   when: import is defined
 

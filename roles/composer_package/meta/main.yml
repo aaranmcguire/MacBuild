@@ -2,5 +2,5 @@
 dependencies:
   - role: brew_package
     packages:
-      - php71
+      - homebrew/php/php71
       - composer

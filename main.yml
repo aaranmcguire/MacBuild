@@ -19,39 +19,39 @@
       - speedtest_cli
       - zsh
 
-  # - name: "Install Applications via Homebrew Cask"
-  #   role: cask_package
-  #   apps:
-  #     - google-chrome
-  #     - google-drive
-  #     - spotify
-  #     - sublime-text
-  #     - slack
-  #     - vlc
-  #     - flux
-  #     - iterm2
-  #     - keybase
-  #     - torbrowser
-  #     - the-unarchiver
-  #     - grammarly
-  #     - atom
-
-  - name: "Install Applications via App Store"
-    role: mas_package
-    mas_email: "aaran.mcguire@me.com"
+  - name: "Install Applications via Homebrew Cask"
+    role: cask_package
     apps:
-      - name: Clocks
-        id: 414554506
-      - name: VisualDiffer
-        id: 412386481
-      - name: Twitter
-        id: 409789998
-      - name: Calca
-        id: 635758264
-      - name: BetterSnapTool
-        id: 417375580
-      - name: Todoist
-        id: 585829637
+      - google-chrome
+      - google-drive
+      - spotify
+      - sublime-text
+      - slack
+      - vlc
+      - flux
+      - iterm2
+      - keybase
+      - torbrowser
+      - the-unarchiver
+      - grammarly
+      - atom
+
+  # - name: "Install Applications via App Store"
+  #   role: mas_package
+  #   mas_email: "aaran.mcguire@me.com"
+  #   apps:
+  #     - name: Clocks
+  #       id: 414554506
+  #     - name: VisualDiffer
+  #       id: 412386481
+  #     - name: Twitter
+  #       id: 409789998
+  #     - name: Calca
+  #       id: 635758264
+  #     - name: BetterSnapTool
+  #       id: 417375580
+  #     - name: Todoist
+  #       id: 585829637
 
   # User Configuration
 
@@ -65,6 +65,7 @@
       PATHs:
         - "{{ ansible_env.HOME }}/.composer/vendor/bin" # Composer
         - "/usr/local/sbin" # Homebrew
+        - "/usr/local/bin" # Homebrew
       aliases:
         - { alias: "art", command: "php artisan" }
         - { alias: "git", command: "hub" }
@@ -81,10 +82,10 @@
     git_user_signingkey: "8062012BABDF0202"
     git_commit_gpgsign: true
 
-  - name: "Setup GPG"
-    role: gpg_setup
-    import:
-      - https://keybase.io/aaranmcguire/pgp_keys.asc
+  # - name: "Setup GPG"
+  #   role: gpg_setup
+  #   import:
+  #     - https://keybase.io/aaranmcguire/pgp_keys.asc
 
   - name: "Configure the Dock"
     role: dock

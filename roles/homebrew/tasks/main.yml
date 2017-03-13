@@ -2,48 +2,51 @@
 
 - name: "Assert Homebrew installation"
   stat:
-    path: "{{ brew_install_path }}/bin/brew"
+    path: "/usr/local/bin/brew"
   register: brew_installed
 
-# - name: "Install Homebrew"
-#   git: 
-#     repo: https://github.com/Homebrew/homebrew
-#     dest: "{{ brew_repo_path }}"
-#     update: no
-#   when: brew_installed.stat.exists == false
+- name: "Ensure Homebrew directory exists"
+  file:
+    path: /usr/local/homebrew
+    owner: "{{ ansible_user_id }}"
+    group: admin
+    state: directory
+    recurse: true
+    mode: 0775
+  become: yes
 
-# - name: "Copy {{ brew_install_path }} to {{ brew_repo_path }}"
-#   sudo: True
-#   synchronize:
-#     src: "{{ brew_install_path }}/"
-#     dest: "{{ brew_repo_path }}"
-#     copy_links: yes
-#   when: brew_installed.stat.exists == false
+- name: "Ensure Homebrew directory exists (2)"
+  file:
+    path: /usr/local/bin
+    owner: "{{ ansible_user_id }}"
+    group: admin
+    state: directory
+    recurse: true
+    mode: 0775
+  become: yes
 
-# - name: "Fix user ACL on {{ brew_repo_path }} and clean up {{ brew_install_path }}"
-#   sudo: True
-#   file:
-#     path: "{{ item.path }}"
-#     state: "{{ item.state|default('directory') }}"
-#     owner: "{{ ansible_user_id }}"
-#     group: staff
-#     mode: 0755
-#   with_items:
-#     - { path: '{{ brew_repo_path }}' }
-#     - { path: '{{ brew_repo_path }}/bin' }
-#     - { path: '{{ brew_install_path }}' , state: 'absent' }
-#   when: brew_installed.stat.exists == false
+- name: "Install Homebrew"
+  git: 
+    repo: "https://github.com/Homebrew/homebrew"
+    dest: "/usr/local/homebrew"
+    update: no
+    accept_hostkey: yes
+    depth: 1
+  when: brew_installed.stat.exists == false
 
-# - name: "Ensure {{ brew_repo_path }} is linked to the {{ brew_install_path }}"
-#   sudo: True
-#   file:
-#     state: link
-#     src: "{{ brew_repo_path }}"
-#     dest: "{{ brew_install_path }}"
-#     owner: "{{ ansible_user_id }}"
-#   when: brew_installed.stat.exists == false
+- name: "Symlink brew to homebrew_brew_bin_path"
+  file:
+    src: "/usr/local/homebrew/bin/brew"
+    dest: "/usr/local/bin/brew"
+    state: link
+    force: yes
+  when: brew_installed.stat.exists == false
+  become: yes
 
-# - name: "Update Homebrew"
-#   homebrew:
-#     update_homebrew: yes
-#   when: brew_installed.stat.exists == true
+- name: "Update Homebrew"
+  homebrew:
+    update_homebrew: yes
+  when: brew_installed.stat.exists == true
+
+- name: "export PATH env"
+  shell: 'export PATH="/usr/local/bin:$PATH"'

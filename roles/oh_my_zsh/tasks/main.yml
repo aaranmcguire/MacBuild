@@ -12,7 +12,7 @@
 
 - name: "Set Oh My Zsh as Shell"
   shell: "chsh -s $(which zsh) {{ ansible_user_id }}"
-  sudo: True
+  become: yes
 
 - name: "Set Oh My Zsh Theme"
   lineinfile: 
