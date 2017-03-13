@@ -66,6 +66,7 @@
         - "{{ ansible_env.HOME }}/.composer/vendor/bin" # Composer
         - "/usr/local/sbin" # Homebrew
         - "/usr/local/bin" # Homebrew
+        - "{{ ansible_env.HOME }}/Library/Python/2.7/bin" # Ansible/Pip packages
       aliases:
         - { alias: "art", command: "php artisan" }
         - { alias: "git", command: "hub" }
