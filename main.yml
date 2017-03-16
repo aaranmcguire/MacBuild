@@ -153,6 +153,10 @@
       - { key: "NSGlobalDomain AppleShowAllExtensions", value: true, type: bool }
       # Show stats bar in finder.
       - { key: "com.apple.finder ShowStatusBar", value: true, type: bool }
+      # Dont show tags on sidebar.
+      - { key: "com.apple.finder ShowRecentTags", value: false, type: bool }
+      # Show HHD and Mac Name under Devices.
+      - { key: "com.apple.finder SidebarDevicesSectionDisclosedState", value: true, type: bool }
       # Disable warnings when changing file extentions.
       - { key: "com.apple.finder FXEnableExtensionChangeWarning", value: false, type: bool }
       # Disable .DS_Store files on network drives.
@@ -198,6 +202,26 @@
       - { key: "com.apple.dashboard mcx-disabled", value: true, type: bool }
       # Disable Dictation hotkey.
       - { key: "com.apple.HIToolbox AppleDictationAutoEnable", value: false, type: bool }
+      # Enable zoom.
+      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: '15 "{enabled = 1;}";', type: dict-add }
+      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: '17 "{enabled = 1;}";', type: dict-add }
+      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: '19 "{enabled = 1;}";', type: dict-add }
+      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: '23 "{enabled = 1;}";', type: dict-add }
+      - { key: "com.apple.universalaccess closeViewHotkeysEnabled", value: true, type: bool }
+      - { key: "com.apple.universalaccess closeViewScrollWheelToggle", value: true, type: bool }
+      - { key: "com.apple.AppleMultitouchTrackpad HIDScrollZoomModifierMask", value: 262144, type: int }
+      # Disable Accessibility shortcut.
+      - { key: "com.apple.universalaccess feature.dwellControl", value: false, type: bool }
+      - { key: "com.apple.universalaccess feature.invertDisplayColor", value: false, type: bool }
+      - { key: "com.apple.universalaccess feature.mouseKeys", value: false, type: bool }
+      - { key: "com.apple.universalaccess feature.slowKeys", value: false, type: bool }
+      - { key: "com.apple.universalaccess feature.stickyKeys", value: false, type: bool }
+      - { key: "com.apple.universalaccess feature.switchControl", value: false, type: bool }
+      - { key: "com.apple.universalaccess feature.voiceOver", value: false, type: bool }
+      - { key: "com.apple.universalaccess feature.zoom", value: false, type: bool }
+      # Set menubar.
+      - { key: "com.apple.systemuiserver NSStatusItem Visible com.apple.menuextra.airplay", value: false, type: bool }
+      - { key: "com.apple.systemuiserver menuExtras", value: "'/System/Library/CoreServices/Menu Extras/Clock.menu' '/System/Library/CoreServices/Menu Extras/AirPort.menu' '/System/Library/CoreServices/Menu Extras/Volume.menu'", type: array }
     restartAfter:
       - Dock
       - Finder
