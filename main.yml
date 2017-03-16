@@ -191,7 +191,7 @@
       - { key: "org.herf.Flux sleepLate", value: true, type: bool }
       - { key: "org.herf.Flux under18", value: true, type: bool }
       # Set Touchbar settings.
-      - { key: "com.apple.controlstrip FullCustomized", value: "("com.apple.system.group.brightness", "com.apple.system.screen-lock", NSTouchBarItemIdentifierFlexibleSpace, "com.apple.system.group.volume", "com.apple.system.group.media")", type: array }
+      - { key: "com.apple.controlstrip FullCustomized", value: "'com.apple.system.group.brightness' 'com.apple.system.screen-lock' NSTouchBarItemIdentifierFlexibleSpace 'com.apple.system.group.volume' 'com.apple.system.group.media'", type: array }
       - { key: "com.apple.touchbar.agent PresentationModeGlobal", value: "fullControlStrip", type: string }
       - { key: "NSGlobalDomain NSAutomaticTextCompletionEnabled", value: false, type: bool}
       # Disable Dashboard.
