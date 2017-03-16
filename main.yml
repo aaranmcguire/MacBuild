@@ -14,7 +14,6 @@
       - git
       - hub
       - mas
-      - gpg-agent
       - httpie
       - speedtest_cli
       - zsh
@@ -203,10 +202,10 @@
       # Disable Dictation hotkey.
       - { key: "com.apple.HIToolbox AppleDictationAutoEnable", value: false, type: bool }
       # Enable zoom.
-      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: '15 "{enabled = 1;}";', type: dict-add }
-      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: '17 "{enabled = 1;}";', type: dict-add }
-      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: '19 "{enabled = 1;}";', type: dict-add }
-      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: '23 "{enabled = 1;}";', type: dict-add }
+      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: "15 '{enabled = 1;}'", type: dict-add }
+      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: "17 '{enabled = 1;}'", type: dict-add }
+      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: "19 '{enabled = 1;}'", type: dict-add }
+      - { key: "com.apple.symbolichotkeys AppleSymbolicHotKeys", value: "23 '{enabled = 1;}'", type: dict-add }
       - { key: "com.apple.universalaccess closeViewHotkeysEnabled", value: true, type: bool }
       - { key: "com.apple.universalaccess closeViewScrollWheelToggle", value: true, type: bool }
       - { key: "com.apple.AppleMultitouchTrackpad HIDScrollZoomModifierMask", value: 262144, type: int }
@@ -220,8 +219,8 @@
       - { key: "com.apple.universalaccess feature.voiceOver", value: false, type: bool }
       - { key: "com.apple.universalaccess feature.zoom", value: false, type: bool }
       # Set menubar.
-      - { key: "com.apple.systemuiserver NSStatusItem Visible com.apple.menuextra.airplay", value: false, type: bool }
-      - { key: "com.apple.systemuiserver menuExtras", value: "'/System/Library/CoreServices/Menu Extras/Clock.menu' '/System/Library/CoreServices/Menu Extras/AirPort.menu' '/System/Library/CoreServices/Menu Extras/Volume.menu'", type: array }
+      - { key: "com.apple.airplay showInMenuBarIfPresent", value: false, type: bool }
+      - { key: "com.apple.systemuiserver menuExtras", value: "'/System/Library/CoreServices/Menu Extras/Clock.menu' '/System/Library/CoreServices/Menu Extras/AirPort.menu' '/System/Library/CoreServices/Menu Extras/Volume.menu' '/System/Library/CoreServices/Menu Extras/Battery.menu'", type: array }
     restartAfter:
       - Dock
       - Finder
