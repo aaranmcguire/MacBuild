@@ -35,6 +35,7 @@
       - the-unarchiver
       - grammarly
       - atom
+      - docker
 
   - name: "Hide applications if SIP is disabled"
     role: hide_applications
@@ -58,22 +59,22 @@
       - "/Applications/Stickies.app"
       - "/Applications/Time\\ Machine.app"
 
-  # - name: "Install Applications via App Store"
-  #   role: mas_package
-  #   mas_email: "aaran.mcguire@me.com"
-  #   apps:
-  #     - name: Clocks
-  #       id: 414554506
-  #     - name: VisualDiffer
-  #       id: 412386481
-  #     - name: Twitter
-  #       id: 409789998
-  #     - name: Calca
-  #       id: 635758264
-  #     - name: BetterSnapTool
-  #       id: 417375580
-  #     - name: Todoist
-  #       id: 585829637
+  - name: "Install Applications via App Store"
+    role: mas_package
+    mas_email: "aaran.mcguire@me.com"
+    apps:
+      - name: Clocks
+        id: 414554506
+      - name: VisualDiffer
+        id: 412386481
+      - name: Twitter
+        id: 409789998
+      - name: Calca
+        id: 635758264
+      - name: BetterSnapTool
+        id: 417375580
+      - name: Todoist
+        id: 585829637
 
   # User Configuration
 
@@ -137,8 +138,10 @@
       - { key: "com.apple.ImageCapture disableHotPlug", value: true, type: bool }
       # Disable press and hold for foreign characters. 
       - { key: "NSGlobalDomain ApplePressAndHoldEnabled", value: false, type: bool }
-      # Disable auto spelling correction.
+      # Disable auto spelling correction, auto capitalisation & smart quotes.
       - { key: "NSGlobalDomain NSAutomaticSpellingCorrectionEnabled", value: false, type: bool }
+      - { key: "NSGlobalDomain NSAutomaticCapitalizationEnabled", value: false, type: bool }
+      - { key: "NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled", value: false, type: bool }
       # Ask for password after screensaver.
       - { key: "com.apple.screensaver askForPassword", value: 1, type: int }
       - { key: "com.apple.screensaver askForPasswordDelay", value: 0, type: int }
@@ -164,7 +167,7 @@
       - { key: "com.apple.finder FXDefaultSearchScope", value: "SCcf", type: string }
       # Use column view.
       - { key: "com.apple.finder FXPreferredViewStyle", value: "Nlsv", type: string }
-      # Show battery percentage in menu bar
+      # Show battery percentage in menu bar.
       - { key: "com.apple.menuextra.battery ShowPercent", value: "YES", type: string }
       # Mouse Settings.
       - { key: "NSGlobalDomain AppleEnableSwipeNavigateWithScrolls", value: 0, type: int }
@@ -175,13 +178,28 @@
       - { key: "NSGlobalDomain com.apple.trackpad.twoFingerFromRightEdgeSwipeGesture", value: 0, type: int, extra: "-currentHost" }
       - { key: "NSGlobalDomain com.apple.trackpad.fourFingerVertSwipeGesture", value: 0, type: int, extra: "-currentHost" }
       - { key: "com.apple.dock showLaunchpadGestureEnabled", value: false, type: bool }
+      # Disable Force Touch.
+      - { key: "com.apple.AppleMultitouchTrackpad ForceSuppressed", value: true, type: bool }
+      - { key: "com.apple.AppleMultitouchTrackpad ActuateDetents", value: 0, type: int }
+      # Set click to Firm.
+      - { key: "com.apple.AppleMultitouchTrackpad FirstClickThreshold", value: 2, type: int }
+      - { key: "com.apple.AppleMultitouchTrackpad SecondClickThreshold", value: 2, type: int }
       # Set F.lux Settings.
       - { key: "org.herf.Flux lateColorTemp", value: 1200, type: int }
       - { key: "org.herf.Flux nightColorTemp", value: 2700, type: int }
       - { key: "org.herf.Flux wakeTime", value: 420, type: int }
       - { key: "org.herf.Flux sleepLate", value: true, type: bool }
       - { key: "org.herf.Flux under18", value: true, type: bool }
+      # Set Touchbar settings.
+      - { key: "com.apple.controlstrip FullCustomized", value: "("com.apple.system.group.brightness", "com.apple.system.screen-lock", NSTouchBarItemIdentifierFlexibleSpace, "com.apple.system.group.volume", "com.apple.system.group.media")", type: array }
+      - { key: "com.apple.touchbar.agent PresentationModeGlobal", value: "fullControlStrip", type: string }
+      - { key: "NSGlobalDomain NSAutomaticTextCompletionEnabled", value: false, type: bool}
+      # Disable Dashboard.
+      - { key: "com.apple.dashboard mcx-disabled", value: true, type: bool }
+      # Disable Dictation hotkey.
+      - { key: "com.apple.HIToolbox AppleDictationAutoEnable", value: false, type: bool }
     restartAfter:
       - Dock
       - Finder
       - SystemUIServer # Menu Bar
+      - ControlStrip # Touch Bar
