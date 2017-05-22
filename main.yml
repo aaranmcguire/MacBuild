@@ -33,8 +33,10 @@
       - torbrowser
       - the-unarchiver
       - grammarly
-      - atom
       - docker
+      - virtualbox
+      - vagrant
+      - vagrant-manager
 
   - name: "Hide applications if SIP is disabled"
     role: hide_applications
