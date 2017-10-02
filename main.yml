@@ -7,16 +7,16 @@
   - name: "Install CLI Applications via Homebrew"
     role: brew_package
     packages:
-      - openssl
-      - docker
-      - wget
-      - curl
-      - git
-      - hub
-      - mas
-      - httpie
-      - speedtest_cli
-      - zsh
+      - { name: "openssl" }
+      - { name: "docker" }
+      - { name: "wget" }
+      - { name: "curl", flags: "with-nghttp2" }
+      - { name: "git" }
+      - { name: "hub" }
+      - { name: "mas" }
+      - { name: "httpie" }
+      - { name: "speedtest_cli" }
+      - { name: "zsh" }
 
   - name: "Install Applications via Homebrew Cask"
     role: cask_package
@@ -91,6 +91,7 @@
         - "/usr/local/sbin" # Homebrew
         - "/usr/local/bin" # Homebrew
         - "{{ ansible_env.HOME }}/Library/Python/2.7/bin" # Ansible/Pip packages
+        - "/usr/local/opt/curl/bin" # curl
       aliases:
         - { alias: "art", command: "php artisan" }
         - { alias: "git", command: "hub" }
