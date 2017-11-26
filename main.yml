@@ -15,14 +15,14 @@
       - hub
       - mas
       - httpie
-      - speedtest_cli
       - zsh
+      - dnsmasq
+      - tor
 
   - name: "Install Applications via Homebrew Cask"
     role: cask_package
     apps:
       - google-chrome
-      - google-drive
       - spotify
       - sublime-text
       - slack
@@ -37,6 +37,7 @@
       - vmware-fusion
       - vagrant
       - vagrant-manager
+      - postman
 
   - name: "Hide applications if SIP is disabled"
     role: hide_applications
@@ -74,8 +75,6 @@
         id: 635758264
       - name: BetterSnapTool
         id: 417375580
-      - name: Todoist
-        id: 585829637
 
   # User Configuration
 
@@ -86,11 +85,15 @@
         - git
         - docker
         - httpie
+        - brew
+        - cask
+        - golang
       PATHs:
         - "{{ ansible_env.HOME }}/.composer/vendor/bin" # Composer
         - "/usr/local/sbin" # Homebrew
         - "/usr/local/bin" # Homebrew
         - "{{ ansible_env.HOME }}/Library/Python/2.7/bin" # Ansible/Pip packages
+        - "/usr/local/opt/curl/bin" # Homebrew curl
       aliases:
         - { alias: "art", command: "php artisan" }
         - { alias: "git", command: "hub" }
