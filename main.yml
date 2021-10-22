@@ -8,16 +8,17 @@
     role: brew_package
     packages:
       - openssl
+      - openssh
       - docker
       - wget
       - curl
       - git
       - hub
       - mas
-      - httpie
       - zsh
-      - dnsmasq
       - tor
+      - bind
+      - jq
 
   - name: "Install Applications via Homebrew Cask"
     role: cask_package
@@ -27,17 +28,14 @@
       - sublime-text
       - slack
       - vlc
-      - flux
       - iterm2
-      - keybase
       - torbrowser
       - the-unarchiver
-      - grammarly
-      - docker
-      - vmware-fusion
-      - vagrant
-      - vagrant-manager
-      - postman
+      - ticktick
+      - wechat
+      - whatsapp
+      - signal
+      - visual-studio-code
 
   - name: "Hide applications if SIP is disabled"
     role: hide_applications
@@ -67,12 +65,6 @@
     apps:
       - name: Clocks
         id: 414554506
-      - name: VisualDiffer
-        id: 412386481
-      - name: Twitter
-        id: 409789998
-      - name: Calca
-        id: 635758264
       - name: BetterSnapTool
         id: 417375580
 
@@ -83,11 +75,7 @@
     config:
       plugins:
         - git
-        - docker
-        - httpie
         - brew
-        - cask
-        - golang
       PATHs:
         - "{{ ansible_env.HOME }}/.composer/vendor/bin" # Composer
         - "/usr/local/sbin" # Homebrew
@@ -95,32 +83,18 @@
         - "{{ ansible_env.HOME }}/Library/Python/2.7/bin" # Ansible/Pip packages
         - "/usr/local/opt/curl/bin" # Homebrew curl
       aliases:
-        - { alias: "art", command: "php artisan" }
         - { alias: "git", command: "hub" }
-        - { alias: "cask", command: "brew cask" }
         - { alias: "subl", command: "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl" }
-
-  - name: "Install Laravel Enviroment"
-    role: laravel_environment
 
   - name: "Set Git Configuration"
     role: git_config
     git_user_name: "Aaran McGuire"
     git_user_email: "aaran.mcguire@cl.vc"
-    git_user_signingkey: "8062012BABDF0202"
-    git_commit_gpgsign: false
-
-  - name: "Setup GPG"
-    role: gpg_setup
-    import:
-      - url: https://keybase.io/aaranmcguire/pgp_keys.asc
-        md5_checksum: ef67a7f046cc0d9a43ee6a75aab423e0
 
   - name: "Configure the Dock"
     role: dock
     apps:
       - "/Applications/Spotify.app"
-      - "/Applications/Google Chrome.app"
       - "/Applications/iTerm.app"
     folders:
       - path: "/Applications"
@@ -175,8 +149,6 @@
       - { key: "com.apple.finder FXDefaultSearchScope", value: "SCcf", type: string }
       # Use column view.
       - { key: "com.apple.finder FXPreferredViewStyle", value: "Nlsv", type: string }
-      # Show battery percentage in menu bar.
-      - { key: "com.apple.menuextra.battery ShowPercent", value: "YES", type: string }
       # Mouse Settings.
       - { key: "NSGlobalDomain AppleEnableSwipeNavigateWithScrolls", value: 0, type: int }
       - { key: "NSGlobalDomain com.apple.trackpad.threeFingerDragGesture", value: 0, type: int, extra: "-currentHost" }
@@ -192,12 +164,6 @@
       # Set click to Firm.
       - { key: "com.apple.AppleMultitouchTrackpad FirstClickThreshold", value: 2, type: int }
       - { key: "com.apple.AppleMultitouchTrackpad SecondClickThreshold", value: 2, type: int }
-      # Set F.lux Settings.
-      - { key: "org.herf.Flux lateColorTemp", value: 1200, type: int }
-      - { key: "org.herf.Flux nightColorTemp", value: 2700, type: int }
-      - { key: "org.herf.Flux wakeTime", value: 420, type: int }
-      - { key: "org.herf.Flux sleepLate", value: true, type: bool }
-      - { key: "org.herf.Flux under18", value: true, type: bool }
       # Set Touchbar settings.
       - { key: "com.apple.controlstrip FullCustomized", value: "'com.apple.system.group.brightness' 'com.apple.system.screen-lock' NSTouchBarItemIdentifierFlexibleSpace 'com.apple.system.group.volume' 'com.apple.system.group.media'", type: array }
       - { key: "com.apple.touchbar.agent PresentationModeGlobal", value: "fullControlStrip", type: string }
